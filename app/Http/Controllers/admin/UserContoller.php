@@ -11,9 +11,12 @@ use Illuminate\Http\Request;
 class UserContoller extends Controller
 {
     public function store(StorePostRequest $request){
-        
         $user = User::create($request->validated());
         return new UserResource($user);
+    }
 
+    public function getUsers(){
+        $users = User::all();
+        return UserResource::collection($users);
     }
 }

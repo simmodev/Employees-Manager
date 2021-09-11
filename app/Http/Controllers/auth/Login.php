@@ -3,20 +3,30 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\VerificationMail;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class Login extends Controller
 {
     
     public function store(Request $request){
+        Session::put('verification_code', rand(10000,99999));
         Session::put('email', $request->email);
 
+        //Mail::to($request->email)->send(new VerificationMail());
         
-        
-        return view('auth.login');
+        return view('auth.verification');
+    }
 
+    public function verify(Request $request){
+        if($request->verification_code == Session::get('verification_code')){
+            dd('success');
+        }else{
+            return view('auth.verification', ['message'=>'رقم التأكيد خاطئ !']);
+        }
     }
 }

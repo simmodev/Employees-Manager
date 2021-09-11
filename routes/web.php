@@ -19,3 +19,4 @@ Route::get('/', function () {
 })->name('home');
 
 Route::post('/login', [Login::class, 'store'])->name('login');
+Route::post('/verification', [Login::class, 'verify'])->name('verification');

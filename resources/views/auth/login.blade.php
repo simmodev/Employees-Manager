@@ -11,9 +11,6 @@
     
     <div class="container">
         <div class="card mx-auto mt-4 col-md-6">
-            @if (Session::get('email'))
-                {{Session::get('email')}}
-            @endif
             <div class="card-body">
                 <form action="{{route('login')}}" method="post">
                     @csrf

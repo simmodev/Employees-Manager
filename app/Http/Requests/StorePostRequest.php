@@ -24,11 +24,11 @@ class StorePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'job_name'=>'required',
-            'phone_number'=>'required',
-            'email'=>'required',
+            'first_name'=>'required|max:255',
+            'last_name'=>'required|max:255',
+            'job_name'=>'required|max:255',
+            'phone_number'=>'required|required|numeric|min:7',
+            'email'=>'required|max:255',
         ];
     }
 }

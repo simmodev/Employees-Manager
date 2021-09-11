@@ -1,11 +1,11 @@
 require('./bootstrap');
 
 import { createApp } from 'vue';
-import employeesDashboard from './components/employeesDashboard.vue';
+import UsersDashboard from './components/admin/UsersDashboard.vue';
 import exampleComponent from './components/ExampleComponent.vue';
 
 let app=createApp({})
-app.component('employees-dashboard' , employeesDashboard);
+app.component('users-dashboard' , UsersDashboard);
 app.component('example-component' , exampleComponent);
 app.mount("#app")
 

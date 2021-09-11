@@ -20,3 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('add',[UserContoller::class, 'store']);
+Route::post('users',[UserContoller::class, 'getUsers']);
