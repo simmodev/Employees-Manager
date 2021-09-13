@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Almarai&display=swap);
 .pop {
   background: #2a73b0;
 }
@@ -9,7 +10,7 @@
   box-sizing: border-box;
   list-style: none;
   text-decoration: none;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: "Almarai", "Josefin Sans";
 }
 
 body {
@@ -62,7 +63,7 @@ body {
 
 .wrapper .main_content {
   width: 100%;
-  margin-right: 200px;
+  margin-left: 200px;
 }
 
 .wrapper .main_content .header {

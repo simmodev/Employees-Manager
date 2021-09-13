@@ -9,7 +9,7 @@ class Project extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'name',
+        'title',
         'description'
     ];
 
@@ -17,7 +17,7 @@ class Project extends Model
         return $this->hasMany(Task::class, 'project_id');
     }
 
-    public function projectEmployee(){
+    public function employees(){
         return $this->hasMany(UserProject::class, 'project_id');
     }
 

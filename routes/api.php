@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\ProjectController;
 use App\Http\Controllers\admin\UserContoller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::prefix('admin')->group(function(){
+    Route::post('user/add',[UserContoller::class, 'store']);
+    Route::post('users',[UserContoller::class, 'getUsers']);
 
-Route::post('add',[UserContoller::class, 'store']);
-Route::post('users',[UserContoller::class, 'getUsers']);
+    Route::post('project/add',[ProjectController::class, 'store']);
+    Route::post('projects',[ProjectController::class, 'getProjects']);
+});
+

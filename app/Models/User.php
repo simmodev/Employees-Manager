@@ -25,7 +25,7 @@ class User extends Authenticatable
     ];
 
     public function employeeTasks(){
-        return $this->hasMany(UserTask::class, 'user_id');
+        return $this->hasMany(Task::class, 'user_id');
     }
 
     public function employeeProjects(){

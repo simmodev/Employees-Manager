@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Session;
 
 class Login extends Controller
 {
-    
+    public function index(){
+        return view('auth.login');
+    }
+
     public function store(Request $request){
         Session::put('verification_code', rand(10000,99999));
         Session::put('email', $request->email);

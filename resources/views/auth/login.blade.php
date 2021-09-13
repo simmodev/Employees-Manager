@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 <body>
-    
     <div class="container">
         <div class="card mx-auto mt-4 col-md-6">
             <div class="card-body">

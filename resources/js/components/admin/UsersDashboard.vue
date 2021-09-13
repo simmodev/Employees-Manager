@@ -4,23 +4,30 @@
             <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal" data-bs-target='#add'><i class="bi bi-plus"></i>إضافة موظف</button>
         </div>
         <div>
+            <vue-element-loading 
+                color="#0275d8" 
+                :active="disabled" 
+                spinner="line-scale" 
+                is-full-screen
+                background-color = 'rgba(255, 255, 255, .4)'
+                />
             <table class="table">
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">الاسم</th>
-                    <th scope="col">الوظيفة</th>
-                    <th scope="col">البريد الالكتروني</th>
-                    <th scope="col">العمليات</th>
+                        <th class="py-3" scope="col">#</th>
+                        <th class="py-3" scope="col">الاسم</th>
+                        <th class="py-3" scope="col">الوظيفة</th>
+                        <th class="py-3" scope="col">البريد الالكتروني</th>
+                        <th class="py-3" scope="col">العمليات</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(user, index) in users" :key=index>
-                        <th scope="row">{{ user.id }}</th>
-                        <td>{{ user.first_name }} {{user.last_name}}</td>
-                        <td>{{ user.job_name }}</td>
-                        <td>{{ user.email }}</td>
-                        <td></td>
+                    <tr v-for="(user, index) in users" :key='index'>
+                        <th class="py-3" scope="row">{{ user.id }}</th>
+                        <td class="py-3">{{ user.first_name }} {{user.last_name}}</td>
+                        <td class="py-3">{{ user.job_name }}</td>
+                        <td class="py-3">{{ user.email }}</td>
+                        <td class="py-3"> </td>
                     </tr>
                 </tbody>
             </table>
@@ -69,6 +76,7 @@
 </template>
 
 <script>
+import VueElementLoading from "vue-element-loading";
     export default {
         data(){
             return{
@@ -81,12 +89,14 @@
                 },
                 users: [],
                 errors:null,
+                disabled: true,
             }
         },
         methods:{
             add(){
-                axios.post('/api/add', this.user)
-                .then()
+                this.disabled = true
+                axios.post('/api/admin/user/add', this.user)
+                .then(response=>{})
                 .catch(error =>{
                     if(error.response.status === 422){
                         this.errors = error.response.data.errors
@@ -95,16 +105,20 @@
                 this.getUsers()
             },
             getUsers(){
-                axios.post('/api/users')
+                this.disabled = true
+                axios.post('/api/admin/users')
                 .then(response=>{
                     this.users = response.data.data
-                    console.log(this.users)
+                    this.disabled = false
                 })
             }
         },
         mounted(){
             console.log('users dashboard is mounted')
             this.getUsers()
+        },
+        components: {
+            VueElementLoading
         }
     }
 </script>

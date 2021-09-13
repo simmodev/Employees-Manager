@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="app">
-    <users-dashboard></employees-dashboard>
+    <users-dashboard></users-dashboard>
 </div>
 @endsection
 
