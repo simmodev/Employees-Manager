@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\ProjectController;
 use App\Http\Controllers\admin\UserContoller;
+use App\Http\Controllers\admin\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,5 +26,9 @@ Route::prefix('admin')->group(function(){
 
     Route::post('project/add',[ProjectController::class, 'store']);
     Route::post('projects',[ProjectController::class, 'getProjects']);
+
+    Route::post('task/add',[TaskController::class, 'store']);
+    Route::post('tasks',[TaskController::class, 'getTasks']);
+    Route::post('task/users',[TaskController::class, 'getUsers']);
 });
 

@@ -8,6 +8,7 @@ import TasksDashboard from './components/admin/TasksDashboard.vue';
 
 import VueElementLoading from "vue-element-loading";
 import Multiselect from '@vueform/multiselect'
+import '@vueform/multiselect/themes/default.css'
 
 
 

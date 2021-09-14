@@ -56,9 +56,10 @@
                                         v-model="project.selected_users"
                                         :options="users"
                                         valueProp='id'
-                                        label='first_name'
                                         :required="true"
-                                    />
+                                        :class="errors && errors.selected_users?'border-danger':''"
+                                        label='first_name'
+                                    ></Multiselect>
                                 </div>
                             </form>
                         </div>
@@ -74,7 +75,7 @@
 </template>
 
 <script>
-  import Multiselect from '@vueform/multiselect'
+
     export default{
         data(){
             return {
@@ -122,10 +123,8 @@
             this.getProjects()
             this.getUsers()
         },
-        components: {
-            Multiselect,
-        },
+
     }
 </script>
 
-<style src="@vueform/multiselect/themes/default.css"></style>
+<style></style>

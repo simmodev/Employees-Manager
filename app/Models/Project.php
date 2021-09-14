@@ -17,8 +17,9 @@ class Project extends Model
         return $this->hasMany(Task::class, 'project_id');
     }
 
-    public function employees(){
-        return $this->hasMany(UserProject::class, 'project_id');
+    public function users(){
+        return $this->belongsToMany(User::class, 'user_project', 'project_id', 'user_id')
+        ->withTimestamps();
     }
 
 }

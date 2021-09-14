@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Resources\ProjectResource;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -16,10 +17,9 @@ class ProjectController extends Controller
 
     public function store(StoreProjectRequest $request){
         $project = Project::create($request->validated());
-        foreach($request->selected_users as $user){
-            $project->employees()->create([
-                'user_id'=>$user
-            ]);
+        foreach($request->selected_users as $selected_user){
+            $user = User::where('id', $selected_user)->first();
+            $user->projects()->attach($project);
         }
         return new ProjectResource($project);
     }

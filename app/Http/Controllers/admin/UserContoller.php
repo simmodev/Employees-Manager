@@ -23,5 +23,5 @@ class UserContoller extends Controller
         $users = User::all();
         return UserResource::collection($users);
     }
-    
+
 }

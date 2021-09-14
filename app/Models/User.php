@@ -24,12 +24,9 @@ class User extends Authenticatable
         'email',
     ];
 
-    public function employeeTasks(){
-        return $this->hasMany(Task::class, 'user_id');
-    }
-
-    public function employeeProjects(){
-        return $this->hasMany(UserProject::class, 'user_id');
+    public function projects(){
+        return $this->belongsToMany(Project::class, 'user_project', 'user_id', 'project_id')
+        ->withTimestamps();
     }
 
     /**
