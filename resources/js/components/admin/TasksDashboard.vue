@@ -6,7 +6,7 @@
         <div>
             <vue-element-loading 
                 color="#0275d8" 
-                :active="false" 
+                :active="disabled" 
                 spinner="line-scale" 
                 is-full-screen
                 background-color = 'rgba(255, 255, 255, .4)'
@@ -15,13 +15,21 @@
                 <thead>
                     <tr>
                         <th class="py-3" scope="col">#</th>
-                        <th class="py-3" scope="col">Project</th>
                         <th class="py-3" scope="col">Taks Title</th>
                         <th class="py-3" scope="col">description</th>
-                        <th class="py-3" scope="col">Employee</th>
                         <th class="py-3" scope="col">Actions</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <tr v-for="(task, index) in tasks" :key='index'>
+                        <th class="py-3" scope="row">{{ task.id }}</th>
+                        <td class="py-3">{{ task.title }}</td>
+                        <td class="py-3">{{ task.description }}</td>
+                        <td class="py-3">
+                            <button class="btn btn-primary btn-sm text-white" data-bs-toggle="modal" data-bs-target='#show' @click="show_task(task.project_id, task.user_id, task.title, task.description)">show</button>
+                        </td>
+                    </tr>
+                </tbody>
             </table>
         </div>
         <div id="modals">
@@ -75,6 +83,56 @@
                     </div>
                 </div>
             </div>
+            <div id="show" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Task infos</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-3">
+                                    <p>Task Title:</p>
+                                </div>
+                                <div class="col-9">
+                                    <p>{{task_info.title}}</p>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <p>Description:</p>
+                                </div>
+                                <div class="col-9">
+                                    <p>{{task_info.description}}</p>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <p>Employee in charge:</p>
+                                </div>
+                                <div class="col-9">
+                                    <p>{{task_info.user_name}}</p>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="row">
+                                <div class="col-3">
+                                    <p>Project Title</p>
+                                </div>
+                                <div class="col-9">
+                                    <p>{{task_info.project_title}}</p>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -95,6 +153,12 @@
                 errors: null,
                 disabled: true,
                 project_selected: false,
+                task_info:{
+                    title:'',
+                    description:'',
+                    user_name:'',
+                    project_title:'',
+                },
             }
         },
         methods:{
@@ -105,10 +169,9 @@
                     .catch(error=>{
                         if(error.response.status === 422){
                             this.errors = error.response.data.errors
-                            console.log(this.errors)
                         }
                     })
-                this.getProjects()
+                this.getTasks()
             },
             getTasks(){
                 this.disabled = true
@@ -138,11 +201,27 @@
                 this.project_selected = false
                 this.task.user_id = null
                 this.users = null
-                console.log(this.project_selected)
+            },
+            show_task(project_id, user_id, task_title, task_description){
+                this.disabled=true
+                this.task_info.title=task_title
+                this.task_info.description=task_description
+                axios.post('/api/admin/task/user/'+user_id)
+                    .then(response=>{
+                        this.task_info.user_name = response.data.first_name+' '+response.data.last_name
+                    })
+
+                axios.post('/api/admin/task/project/'+project_id)
+                    .then(response=>{
+                        console.log(response.data)
+                        this.task_info.project_title = response.data.title
+                        this.disabled= false
+                    })
             }
             
         },
         mounted(){
+            this.getTasks()
             this.getProjects()
         }
     }

@@ -30,5 +30,7 @@ Route::prefix('admin')->group(function(){
     Route::post('task/add',[TaskController::class, 'store']);
     Route::post('tasks',[TaskController::class, 'getTasks']);
     Route::post('task/users',[TaskController::class, 'getUsers']);
+    Route::post('task/user/{id}',[TaskController::class, 'getUser']);
+    Route::post('task/project/{id}',[TaskController::class, 'getProject']);
 });
 
