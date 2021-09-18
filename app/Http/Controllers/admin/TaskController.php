@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Resources\TaskResource;
 use App\Http\Resources\UserResource;
@@ -22,6 +23,16 @@ class TaskController extends Controller
     public function store(StoreTaskRequest $request){
         $task = Task::create($request->validated());
         return new TaskResource($task);
+    }
+
+    public function update(Task $task, StoreTaskRequest $request){
+        $task->update($request->validated());
+        return new TaskResource($task);
+    }
+
+    public function destroy(Task $task){
+        $task->delete();
+        return response()->noContent();
     }
 
     public function getTasks(){

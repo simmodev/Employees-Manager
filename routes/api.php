@@ -28,6 +28,8 @@ Route::prefix('admin')->group(function(){
     Route::post('projects',[ProjectController::class, 'getProjects']);
 
     Route::post('task/add',[TaskController::class, 'store']);
+    Route::post('task/edit/{task}',[TaskController::class, 'update']);
+    Route::post('task/delete/{task}',[TaskController::class, 'destroy']);
     Route::post('tasks',[TaskController::class, 'getTasks']);
     Route::post('task/users',[TaskController::class, 'getUsers']);
     Route::post('task/user/{id}',[TaskController::class, 'getUser']);

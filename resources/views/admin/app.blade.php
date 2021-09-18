@@ -15,7 +15,7 @@
     <div class="sidebar">
         <h2>Controle Panel</h2>
         <ul class='nav-items'> 
-            <a href="#"><li><i class="fas fa-home"></i>Homw</li></a>
+            <a href="#"><li><i class="fas fa-home"></i>Home</li></a>
             <a href="{{route('admin.users.dashboard')}}"><li><i class="fas fa-user"></i>Employees Dashboard</li></a>
             <a href="{{route('admin.projects.dashboard')}}"><li><i class="fas fa-address-card"></i>Projects</li></a>
             <a href="{{route('admin.tasks.dashboard')}}"><li><i class="fas fa-project-diagram"></i>Tasks</li></a>
