@@ -129,7 +129,7 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary text-white" @click='edit'>Add</button>
+                            <button type="button" class="btn btn-primary text-white" @click='edit'>Edit</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
@@ -320,6 +320,7 @@
                     .catch(error=>{
                         if(error.response.status === 422){
                             this.errors = error.response.data.errors
+                            
                         }
                     })
                 this.getTasks()

@@ -25,6 +25,9 @@ Route::prefix('admin')->group(function(){
     Route::post('users',[UserContoller::class, 'getUsers']);
 
     Route::post('project/add',[ProjectController::class, 'store']);
+    Route::post('project/edit/{project}',[ProjectController::class, 'update']);
+    Route::post('project/delete/{project}',[ProjectController::class, 'destroy']);
+    Route::post('project/users/{project}',[ProjectController::class, 'getUsers']);
     Route::post('projects',[ProjectController::class, 'getProjects']);
 
     Route::post('task/add',[TaskController::class, 'store']);
