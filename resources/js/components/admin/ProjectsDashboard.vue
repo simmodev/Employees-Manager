@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal" data-bs-target='#add'><i class="bi bi-plus"></i>إضافة مشروع</button>
+            <button type="button" class="btn btn-primary text-white" data-bs-toggle="modal" data-bs-target='#add'><i class="bi bi-plus"></i>Add Project</button>
         </div>
         <div>
             <vue-element-loading 

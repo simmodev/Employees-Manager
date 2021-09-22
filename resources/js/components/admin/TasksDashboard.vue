@@ -14,6 +14,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th class="py-3" scope="col">isCompleted</th>
                         <th class="py-3" scope="col">#</th>
                         <th class="py-3" scope="col">Taks Title</th>
                         <th class="py-3" scope="col">description</th>
@@ -22,6 +23,9 @@
                 </thead>
                 <tbody>
                     <tr v-for="(task, index) in tasks" :key='index'>
+                        <th class="py-1">
+                            <input :checked="task.completed" @change="updateCheck(task.id)" type="checkbox" class="form-check-input" style="width: 30px; height: 30px;">
+                        </th>
                         <th class="py-3" scope="row">{{ task.id }}</th>
                         <td class="py-3">{{ task.title }}</td>
                         <td class="py-3">{{ task.description }}</td>
@@ -320,7 +324,6 @@
                     .catch(error=>{
                         if(error.response.status === 422){
                             this.errors = error.response.data.errors
-                            
                         }
                     })
                 this.getTasks()
@@ -330,8 +333,12 @@
                 axios.post('/api/admin/task/delete/'+task_id)
                     .then(response=>{})
                 this.getTasks()
+            },
+            updateCheck(task_id){
+                axios.post('/api/admin/task/check/'+task_id)
+                    .then(response=>{})
+                this.getTasks()
             }
-            
         },
         mounted(){
             this.getTasks()

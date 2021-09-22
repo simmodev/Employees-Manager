@@ -24,6 +24,15 @@ class UserContoller extends Controller
         return UserResource::collection($users);
     }
 
-    
+    public function update(User $user ,StoreUserRequest $request){
+        $user->update($request->validated());
+        return new UserResource($user);
+    }
 
+    public function destroy(User $user){
+        $user->tasks()->delete();
+        $user->projects()->sync([]);
+        $user->delete();
+        return response()->noContent();
+    }
 }

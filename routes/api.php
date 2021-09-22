@@ -22,6 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::prefix('admin')->group(function(){
     Route::post('user/add',[UserContoller::class, 'store']);
+    Route::post('user/edit/{user}',[UserContoller::class, 'update']);
+    Route::post('user/delete/{user}',[UserContoller::class, 'destroy']);
     Route::post('users',[UserContoller::class, 'getUsers']);
 
     Route::post('project/add',[ProjectController::class, 'store']);
@@ -33,6 +35,7 @@ Route::prefix('admin')->group(function(){
     Route::post('task/add',[TaskController::class, 'store']);
     Route::post('task/edit/{task}',[TaskController::class, 'update']);
     Route::post('task/delete/{task}',[TaskController::class, 'destroy']);
+    Route::post('task/check/{task}',[TaskController::class, 'updateCheck']);
     Route::post('tasks',[TaskController::class, 'getTasks']);
     Route::post('task/users',[TaskController::class, 'getUsers']);
     Route::post('task/user/{id}',[TaskController::class, 'getUser']);
