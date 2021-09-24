@@ -35,3 +35,8 @@ Route::prefix('admin')->group(function(){
     Route::get('projects/dashboard', [ProjectController::class, 'index'])->name('admin.projects.dashboard');
     Route::get('tasks/dashboard', [TaskController::class, 'index'])->name('admin.tasks.dashboard');
 });
+
+Route::prefix('user')->group(function(){
+    Route::get('projects/dashboard', [ProjectController::class, 'index'])->name('user.projects.dashboard');
+    Route::get('tasks/dashboard', [TaskController::class, 'index'])->name('user.tasks.dashboard');
+});

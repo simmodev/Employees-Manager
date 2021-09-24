@@ -19,9 +19,7 @@
             <a href="{{route('admin.users.dashboard')}}"><li><i class="fas fa-user"></i>Employees Dashboard</li></a>
             <a href="{{route('admin.projects.dashboard')}}"><li><i class="fas fa-address-card"></i>Projects</li></a>
             <a href="{{route('admin.tasks.dashboard')}}"><li><i class="fas fa-project-diagram"></i>Tasks</li></a>
-            <a href="#"><li><i class="fas fa-blog"></i>Blogs</li></a></li>
-            <a href="#"><li><i class="fas fa-address-book"></i>Contact</li></a>
-            <a href="#"><li><i class="fas fa-map-pin"></i>Map</li></a>
+            <a href="#" class=""><li><i class="fas fa-address-book"></i>Logout</li></a>
         </ul> 
     </div>
     <div class="main_content">

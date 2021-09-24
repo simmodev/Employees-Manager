@@ -1,8 +1,7 @@
-@extends('admin/app')
+@extends('layouts/admin/app')
 
 @section('content')
 <div class=" mt-3">
-    
     index
 </div>
 @endsection
