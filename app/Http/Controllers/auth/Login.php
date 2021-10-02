@@ -37,7 +37,8 @@ class Login extends Controller
         if($request->verification_code == Session::get('verification_code')){
             $user = User::where('email', Session::get('email'))->first();
             Session::put('LoggedUser', $user->id);
-            dd($user->id);
+            Auth::login($user);
+            return view('user.project.dashboard');
         }else{
             return view('user.auth.verification', ['message'=>'Verification code incorrect!']);
         }

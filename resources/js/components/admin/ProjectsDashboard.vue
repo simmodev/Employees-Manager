@@ -173,10 +173,6 @@
                 errors: null,
                 disabled: true,
                 index: null,
-                show_project:[{
-                    title: '',
-                    description: '',
-                }],
                 show_project_users:{
                     first_name:'',
                     last_name:'',

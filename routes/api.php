@@ -3,6 +3,8 @@
 use App\Http\Controllers\admin\ProjectController;
 use App\Http\Controllers\admin\UserContoller;
 use App\Http\Controllers\admin\TaskController;
+use App\Http\Controllers\user\ProjectController as UserProjectController;
+use App\Http\Controllers\user\TaskController as UserTaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,3 +44,11 @@ Route::prefix('admin')->group(function(){
     Route::post('task/project/{id}',[TaskController::class, 'getProject']);
 });
 
+Route::prefix('user')->group(function(){
+    Route::post('projects',[UserProjectController::class, 'getProjects']);
+    Route::post('project/users/{project}',[ProjectController::class, 'getUsers']);
+
+    Route::post('tasks',[UserTaskController::class, 'getTasks']);
+    Route::post('task/check/{task}',[UserTaskController::class, 'updateCheck']);
+
+});

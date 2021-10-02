@@ -59,7 +59,7 @@ class TaskController extends Controller
     public function updateCheck(Task $task){
         $task->completed = !$task->completed;
         $task->save();
-        dd($task->completed);
+        return response()->noContent();
     }
 
 }

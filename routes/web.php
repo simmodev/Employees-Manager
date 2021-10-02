@@ -4,6 +4,8 @@ use App\Http\Controllers\admin\ProjectController;
 use App\Http\Controllers\admin\UserContoller;
 use App\Http\Controllers\auth\Login;
 use App\Http\Controllers\admin\TaskController;
+use App\Http\Controllers\user\ProjectController as UserProjectController;
+use App\Http\Controllers\user\TaskController as UserTaskController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +39,6 @@ Route::prefix('admin')->group(function(){
 });
 
 Route::prefix('user')->group(function(){
-    Route::get('projects/dashboard', [ProjectController::class, 'index'])->name('user.projects.dashboard');
-    Route::get('tasks/dashboard', [TaskController::class, 'index'])->name('user.tasks.dashboard');
+    Route::get('projects/dashboard', [UserProjectController::class, 'index'])->name('user.projects.dashboard');
+    Route::get('tasks/dashboard', [UserTaskController::class, 'index'])->name('user.tasks.dashboard');
 });
