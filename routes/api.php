@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->middleware('isAdmin')->group(function(){
     Route::post('user/add',[UserContoller::class, 'store']);
     Route::post('user/edit/{user}',[UserContoller::class, 'update']);
     Route::post('user/delete/{user}',[UserContoller::class, 'destroy']);
@@ -44,11 +44,10 @@ Route::prefix('admin')->group(function(){
     Route::post('task/project/{id}',[TaskController::class, 'getProject']);
 });
 
-Route::prefix('user')->group(function(){
+Route::prefix('user')->middleware('authCheck')->group(function(){
     Route::post('projects',[UserProjectController::class, 'getProjects']);
     Route::post('project/users/{project}',[ProjectController::class, 'getUsers']);
 
     Route::post('tasks',[UserTaskController::class, 'getTasks']);
     Route::post('task/check/{task}',[UserTaskController::class, 'updateCheck']);
-
 });

@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('job_name');
             $table->string('phone_number', 15);
             $table->string('email')->unique();
+            $table->boolean('isAdmin')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

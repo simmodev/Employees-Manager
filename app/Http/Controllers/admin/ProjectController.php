@@ -9,6 +9,7 @@ use App\Http\Resources\UserResource;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use SebastianBergmann\Environment\Console;
 
 class ProjectController extends Controller

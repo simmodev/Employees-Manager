@@ -32,13 +32,13 @@ Route::prefix('')->group(function(){
 
 
 
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->middleware('isAdmin')->group(function(){
     Route::get('users/dashboard', [UserContoller::class, 'index'])->name('admin.users.dashboard');
     Route::get('projects/dashboard', [ProjectController::class, 'index'])->name('admin.projects.dashboard');
     Route::get('tasks/dashboard', [TaskController::class, 'index'])->name('admin.tasks.dashboard');
 });
 
-Route::prefix('user')->group(function(){
+Route::prefix('user')->middleware('authCheck')->group(function(){
     Route::get('projects/dashboard', [UserProjectController::class, 'index'])->name('user.projects.dashboard');
     Route::get('tasks/dashboard', [UserTaskController::class, 'index'])->name('user.tasks.dashboard');
 });

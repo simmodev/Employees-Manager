@@ -183,6 +183,10 @@
                     description: '',
                     selected_users: [],
                 },
+                show_project:[{
+                    title: '',
+                    description: '',
+                }],
             }
         },
         methods:{

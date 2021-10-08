@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Session;
 class ProjectController extends Controller
 {
     public function index(Request $request){
-        
         return view('user.project.dashboard');
     }
 

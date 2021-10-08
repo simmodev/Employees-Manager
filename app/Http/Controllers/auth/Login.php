@@ -22,7 +22,6 @@ class Login extends Controller
             'email'=>'required|email'
         ]);
         $user = User::where('email', $request->email)->first();
-        
         if(!$user){
             return back()->with('fail', 'We do not recognize your email adress!');
         }else{
@@ -36,7 +35,11 @@ class Login extends Controller
     public function verify(Request $request){
         if($request->verification_code == Session::get('verification_code')){
             $user = User::where('email', Session::get('email'))->first();
-            Session::put('LoggedUser', $user->id);
+            if($user->isAdmin === 1){
+                Session::put('loggedAdmin', $user->id);
+            }else{
+                Session::put('loggedUser', $user->id);
+            }
             Auth::login($user);
             return view('user.project.dashboard');
         }else{
